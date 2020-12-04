@@ -34,9 +34,7 @@ if (isset($_SESSION['id']) and 'id' == TRUE) {
 <body>
     <main>
         <h1>Accueil</h1>
-    <form action="index.php" method="POST">
-    <input class="submit" type="submit" name="deco" value="Déconnexion" onclick="alert('Vous êtes déconnecté')">
-    </form>
+
     </main>
 </body>
 </html>
@@ -46,6 +44,8 @@ if(isset($_POST['deco'])){
     session_destroy();
     echo' Vous êtes déconnecté';
     header('locationhttp://localhost:8888/discussion/index/index.php');
+    
 }
+
 
 ?>
