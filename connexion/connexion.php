@@ -22,27 +22,57 @@ session_start();
     </header>
 
     <main>
-        <h1>Connexion</h1>
-        <div class="formulaire">
-            <form action="connexion.php" method="POST">
-                <label>Identifiants</label><br />
-                <input class="text" type="text" name="login" required><br />
-                <label>Mot de passe</label><br />
-                <input class="password" type="password" name="password" required><br /><br />
-                <input class="submit" type="submit" name="connecter" value="Se connecter"><br /><br />
-            </form>
-            <form action="connexion.php" method="GET">
-                <input class="submit" type="submit" name="inscription" value="S'inscrire">
-            </form>
+    <div class="nutellaimg">
+            <p> <img src="../images/nutella1.png" alt="imgnutella"></p>
         </div>
+        <form class=formulaire action="connexion.php" method="POST">
+            <h1>Connexion</h1><br />
+            <label>Identifiants</label><br />
+            <input class="text" type="text" name="login" required><br />
+            <label>Mot de passe</label><br />
+            <input class="password" type="password" name="password" required><br /><br />
+            <input class="submit" type="submit" name="connecter" value="Se connecter"><br /><br />
+        </form>
+        <p class="formulaire2">Vous n'avez pas de comtpe?</p><br />
+        <form class = formulaire2 action="connexion.php" method="GET">
+            <input class="submit" type="submit" name="inscription" value="S'inscrire">
+        </form>
     </main>
+    <footer>
+
+<div class="réseaux">
+    <p><b>Retrouvez nous sur:</b></p>
+</div>
+
+<div id="réseauxspotify">
+
+    <div class="facebook">
+        <a target="_blank" href="https://www.facebook.com/nutellafrance">
+            <img src="../images/facebook.png" alt="facebookspotify"></a>
+    </div>
+
+    <div class="instagram">
+
+        <a target="_blank" href="https://www.instagram.com/nutella/">
+            <img src="../images/instagram.png" alt="instagramspotify"></a>
+    </div>
+
+    <div class="twitter">
+
+        <a target="_blank" href="https://twitter.com/NutellaFR">
+            <img src="../images/twitter.png" alt="twitterspotify"></a>
+    </div>
+
+</div>
+
+</footer>
 
 </body>
 
 </html>
 
 <?php
-$db = mysqli_connect("localhost", "root", "root", "discussion"); // Connexion Db
+$db = mysqli_connect("localhost", "root", "", "discussion"); // Connexion Db
 $requete = "SELECT * FROM utilisateurs"; // Requete SQL
 
 if (isset($_POST['connecter'])) { //Si on appuie sur Connecter
@@ -59,19 +89,17 @@ if (isset($_POST['connecter'])) { //Si on appuie sur Connecter
         $idcheck = $user[$i]['id'];
         if ($login == $logcheck and $password == password_verify($password, $passcheck)) { // Si Login et MDP est égal aux valeurs dans le tableau alors connexion + Verify pass 
             $_SESSION['id'] = $idcheck;
-            header('location:http://localhost:8888/discussion/index/index.php');
+            header('location:http://localhost/discussion/index/index.php');
         }
     }
 
-    if ($login != $logcheck ) {
+    if ($login != $logcheck) {
         exit('Les informations fournis sont incorrecte');
     }
-
-
 }
 // LE IF DANS LE FOR SINON LE TABLEAU PARCOURS LES VALEURS ET RETIENDRA LA DERNIERE VALEUR 
 //Connexion échoué à chaque fois car il retiendra la dernière valeur du tableau
 if (isset($_GET['inscription'])) {
-    header('location:http://localhost:8888/discussion/inscription/inscription.php');
+    header('location:http://localhost/discussion/inscription/inscription.php');
 }
 ?>

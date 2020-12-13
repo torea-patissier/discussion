@@ -17,33 +17,61 @@ session_start();
         <nav class="navbar">
             <a class="navlink" href="../index/index.php">Accueil</a>
             <a class="navlink" href="../discussion/discussion.php">Discussion</a>
-            <a class="navlink" href="../profil/profil.php">Profil</a>
+            <a class="navlink" href="../connexion/connexion.php">Connexion</a>
         </nav>
     </header>
     <main>
+        <div class="nutellaimg">
+            <p> <img src="../images/nutella1.png" alt="imgnutella"></p>
+        </div>
 
-        <form action="inscription.php" method="POST">
+        <form class=formulaire action="inscription.php" method="POST">
+            <h1>Inscription</h1><br />
             <label>Identifiants</label><br />
-            <input class="text" type="text" name='login' required><br /><br />
+            <input class="text" type="text" name='login' required><br /><br /><hr>
             <label>Mot de passe</label><br />
-            <input class="password" type="password" name='password' required><br /><br />
+            <input class="password" type="password" name='password' required><br /><br /><hr>
             <label>Confirmation du mot de passe</label><br />
-            <input class="password" type="password" name='confpass' required><br /><br />
+            <input class="password" type="password" name='confpass' required><br /><br /><hr>
             <input class="submit" type="submit" name='envoyer' value="S'inscrire">
         </form>
 
     </main>
     <footer>
 
-    </footer>
+        <div class="réseaux">
+            <p><b>Retrouvez nous sur:</b></p>
+        </div>
 
+        <div id="réseauxspotify">
+
+            <div class="facebook">
+                <a target="_blank" href="https://www.facebook.com/Spotify.France">
+                    <img src="../images/facebook.png" alt="facebookspotify"></a>
+            </div>
+
+            <div class="instagram">
+
+                <a target="_blank" href="https://www.instagram.com/nutella/">
+                    <img src="../images/instagram.png" alt="instagramspotify"></a>
+            </div>
+
+            <div class="twitter">
+
+                <a target="_blank" href="https://twitter.com/NutellaFR">
+                    <img src="../images/twitter.png" alt="twitterspotify"></a>
+            </div>
+
+        </div>
+
+    </footer>
 </body>
 
 </html>
 
 <?php
 
-$db = mysqli_connect("localhost", "root", "root", "discussion");
+$db = mysqli_connect("localhost", "root", "", "discussion");
 if (isset($_POST["envoyer"])) {
     $login = htmlspecialchars($_POST['login']);
     $mdp = htmlspecialchars($_POST['password']);
@@ -59,7 +87,7 @@ if (isset($_POST["envoyer"])) {
         $requete = "INSERT INTO utilisateurs (login, password) VALUES ('$login','$hash')"; // On ajoute le nouvel utilisateurs en Db
         $query = mysqli_query($db, $requete); // Executer la requête
         $_SESSION['id'] = $_POST['id']; // Ouverture de session
-        header('location:http://localhost:8888/discussion/connexion/connexion.php');
+        header('location:http://localhost/discussion/connexion/connexion.php');
     }
 }
 
